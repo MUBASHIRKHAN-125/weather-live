@@ -78,3 +78,20 @@ body {
     border-radius: 4px;
     font-weight: bold;
 }
+.datcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    color: white;
+    font-weight: bold;
+    row-gap: 10px;
+}
+
+.imgortext{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
