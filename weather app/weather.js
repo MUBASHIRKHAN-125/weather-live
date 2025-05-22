@@ -21,7 +21,7 @@ const main = async () => {
     }
 
     let getData = await fetchWeather(inputUser);
-    console.log(getData);
+    // console.log(getData);
 
 
     document.getElementById("location").innerText = `Location: ${getData.location.country}!`
