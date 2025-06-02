@@ -1,4 +1,3 @@
-// const API_KEY = "xSeclMRbo43DGmbB9YxEPIAWrV4DNf8J";
 
 let btnUser = document.querySelector('button');
 
@@ -10,6 +9,8 @@ const fetchWeather = async (city) => {
             throw new ReferenceError(`HTTP error! status: ${response.status}`)
         }
         let data = await response.json();
+        console.log(data);
+
         return data;
 
     } catch (error) {
@@ -22,18 +23,20 @@ const fetchWeather = async (city) => {
 
 const main = async () => {
 
-    let inputUser = document.getElementById('userinput').value.trim();
+    let inputElement = document.getElementById('userinput');
+    let inputUser = inputElement.value.trim();
+
 
     if (!inputUser) {
         alert("Please enter a city name");
         return;
     }
-
+    inputElement.value = "";
     let getData = await fetchWeather(inputUser);
 
     if (getData) {
 
-        document.getElementById("location").innerText = `Location: ${getData.location.country}!`
+        document.getElementById("location").innerText = `Location: ${getData.location.name} , ${getData.location.country}!`
         document.getElementById("item1").innerText = `Region: ${getData.location.region}`;
 
         document.getElementById("imgweather").src = `https:${getData.current.condition.icon}`;
@@ -52,9 +55,12 @@ const main = async () => {
         document.getElementById("item9").innerText = `Last Updated: ${getData.current.last_updated}`;
 
     };
+    storeData(getData);
 };
 btnUser.addEventListener('click', () => {
-
     main();
-
 });
+
+function storeData(data) {
+    localStorage.setItem("Weather Data", JSON.stringify(data));
+};
